@@ -9,4 +9,4 @@ print('Comandos:\n' '   dica       - entra no mercado de dicas\n' '   desisto   
 
 print('Um país foi escolhido, tente adivinhar!') 
 print('Você tem 20 tentativa(s)')
-print('Qual seu palpite?')
+palpite = input('Qual seu palpite?')
