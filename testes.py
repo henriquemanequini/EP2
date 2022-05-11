@@ -8,3 +8,26 @@ print('5. Continente       - custa 7 tentativas')
 print('0. Sem dica')
 print('----------------------------------------')
 opcao_dica = input('Escolha sua opção [0|1|2|3|4]:')
+
+elif palpite not in DADOS.keys():
+        print('país desconhecido')
+        palpite = input('Qual seu palpite? ')
+
+    elif palpite == resposta_certa:
+        print('*** Parabéns! Você acertou após {} tentativas!'. format(contador_tentativas))
+        chances = 0 #isso faz com que saia do while e termine o código
+
+    else: 
+        #latitude 
+        for pais, dados in DADOS.items():
+            if pais == resposta_certa:
+                for item, especificidades in pais.items():
+                    if item == 'latitude':
+                        especificidades = x1
+                    if item == 'longitude':
+                        especificidades = y1
+            if pais == 
+
+        def haversine(raioterra, x1, y1, x2, y2):
+    d = 2*r*asin(((sin((radians(x2)-radians(x1))/2))**2 + cos(radians(x1))*cos(radians(x2))*(sin((radians(y2)-radians(y1))/2)**2))**(1/2))
+    return d
