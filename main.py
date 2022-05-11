@@ -2,7 +2,7 @@
 import random
 from math import *
 from dadosnormalizados import DADOS
-chances = 0
+chances = 20
 #página inicial
 print(' ============================ ')
 print('|                            |')
