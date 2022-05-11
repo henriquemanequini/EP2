@@ -43,15 +43,20 @@ while chances > 0:
         print('0. Sem dica')
         print('----------------------------------------')
         opcao_dica = input('Escolha sua opção [0|1|2|3|4]: ')
-
-        if opcao_dica == '1':
-            chances -= 4
-        elif opcao_dica == '2':
-            chances -= 3
-        elif opcao_dica == '3':
-            chances -= 6
-        elif opcao_dica == '4':
-            chances -= 5
+        respostas_dica = ['0','1','2','3','4','5']
+    while opcao_dica not in respostas_dica:
+        print ('Opção inválida')
+        opcao_dica = input('Escolha sua opção [0|1|2|3|4]: ')
+    if opcao_dica == '1':
+        chances -= 3
+    elif opcao_dica == '2':
+        chances -= 2
+    elif opcao_dica == '3':
+        chances -= 5
+    elif opcao_dica == '4':
+        chances -= 4
+    elif opcao_dica == '0':
+        palpite = input('Qual seu palpite? ')
 
     elif palpite not in DADOS.keys():
         print('país desconhecido')
