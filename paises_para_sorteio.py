@@ -1,11 +1,11 @@
 #sorteando paises
 from math import *
-import random 
+import random
+from re import L 
 from dadosnormalizados import DADOS
+lista_de_paises =[]
 
-def sorteia_pais(DADOS):
-    lista_paises = []
-    for paises in DADOS.keys():
-        lista_paises.append(paises)
-    resposta_certa = random.choice(lista_paises)
-    return resposta_certa
+for pais in DADOS.keys():
+    lista_de_paises.append(pais)
+
+

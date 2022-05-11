@@ -17,8 +17,11 @@ print('Você tem {} tentativa(s)'.format(chances))
 
 #inicializando palpite e selecionando aleatoriamente um pais
 palpite = input('Qual seu palpite? ')
-resposta_certa = random.choice(DADOS.keys())
 
+lista_de_paises =[]
+for pais in DADOS.keys():
+    lista_de_paises.append(pais)
+resposta_certa = random.choice(lista_de_paises)
 raioterra = 6371
 lista_distancia = []
 lista_dicas = []
@@ -56,6 +59,7 @@ while chances > 0:
         elif opcao_dica == '4':
             chances -= 4
         elif opcao_dica == '0':
+            print('Dica: ')
             palpite = input('Qual seu palpite? ')
 
     elif palpite not in DADOS.keys():
