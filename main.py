@@ -2,7 +2,7 @@
 import random
 from math import *
 from dadosnormalizados import DADOS
-
+chances = 0
 #página inicial
 print(' ============================ ')
 print('|                            |')
@@ -15,6 +15,6 @@ print('Você tem 20 tentativa(s)')
 
 #inicializando palpite e selecionando aleatoriamente um pais
 palpite = input('Qual seu palpite?')
-correto = random.choice(DADOS.keys())
+resposta_certa = random.choice(DADOS.keys())
 
 
