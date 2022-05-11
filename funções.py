@@ -48,4 +48,14 @@ def sorteia_letra(palavra, restritas):
         sorteada = random.choice(lista_palavra)
         ok = False
     return sorteada
+
+def normaliza (base_de_paises):
+    base_de_paises_normalizada = {}
+    qual_continente = {}
+    saida = {}
+    for continentes,paises in base_de_paises.items():
+        for pais, dados in paises.items():
+            dados['continente'] = continentes
+            saida[pais] = dados
+    return saida
     
