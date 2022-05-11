@@ -16,10 +16,12 @@ print('Um país foi escolhido, tente adivinhar!')
 print('Você tem {} tentativa(s)'.format(chances))
 
 #inicializando palpite e selecionando aleatoriamente um pais
-palpite = input('Qual seu palpite?')
+palpite = input('Qual seu palpite? ')
 resposta_certa = random.choice(DADOS.keys())
 
 raioterra = 6371
+lista_distancia = []
+lista_dicas = []
 
 while chances > 0:
     if palpite == 'desisto':
@@ -27,20 +29,27 @@ while chances > 0:
         if desistencia == 's':
             print('>>> Que deselegante desistir, o país era:{}'.format(resposta_certa))
         else:
-            palpite = input('Qual seu palpite?')
+            palpite = input('Qual seu palpite? ')
 
     elif palpite == 'dica':
-        print('Mercado de Dicas'
-        '----------------------------------------'
-        '1. Cor da bandeira  - custa 4 tentativas'
-        '2. Letra da capital - custa 3 tentativas'
-        '3. Área             - custa 6 tentativas'
-        '4. População        - custa 5 tentativas'
-        '0. Sem dica'
-        '----------------------------------------')
-        opcao_dica = input('Escolha sua opção [0|1|2|3|4]:')
+        print('Mercado de Dicas')
+        print('----------------------------------------')
+        print('1. Cor da bandeira  - custa 4 tentativas')
+        print('2. Letra da capital - custa 3 tentativas')
+        print('3. Área             - custa 6 tentativas')
+        print('4. População        - custa 5 tentativas')
+        print('5. Continente       - custa 7 tentativas')
+        print('0. Sem dica')
+        print('----------------------------------------')
+        opcao_dica = input('Escolha sua opção [0|1|2|3|4]: ')
+        
         if opcao_dica == '1':
+            chances -= 4
         elif opcao_dica == '2':
+            chances -= 3
         elif opcao_dica == '3':
+            chances -= 6
         elif opcao_dica == '4':
+            chances -= 5
+
 
