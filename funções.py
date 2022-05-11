@@ -58,4 +58,5 @@ def normaliza (base_de_paises):
             dados['continente'] = continentes
             saida[pais] = dados
     return saida
+
     
