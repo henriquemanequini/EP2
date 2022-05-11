@@ -1,4 +1,5 @@
 #sorteando paises
+from math import *
 import random 
 def sorteia_pais(dicionario):
     lista_paises = []
