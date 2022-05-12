@@ -2,6 +2,8 @@
 import random
 from math import *
 from dadosnormalizados import DADOS
+import funções 
+
 
 chances = 20
 
@@ -76,18 +78,16 @@ while chances > 0:
             if pais == resposta_certa:
                 for item, especificidades in pais.items():
                     if item == 'latitude':
-                        especificidades = x1
+                        x1 = especificidades
                     if item == 'longitude':
-                        especificidades = y1
+                        y1 = especificidades 
             if pais == palpite:
                 for item2, especificidades2 in pais.items():
                     if item2 == 'latitude':
-                        especificidades2 = x2
+                        x2 = especificidades2 
                     if item2 == 'longitude':
-                        especificidades2 = y2
-        def haversine(raioterra, x1, y1, x2, y2):
-            d = 2*r*asin(((sin((radians(x2)-radians(x1))/2))**2 + cos(radians(x1))*cos(radians(x2))*(sin((radians(y2)-radians(y1))/2)**2))**(1/2))
-            return d
-        lista_distancia.append('{} km -> {}'.format(d, palpite))
+                        y2 = especificidades2 
+        distancia = funções.haversine(raioterra, x1, y1, x2, y2)
+        lista_distancia.append('{} km -> {}'.format(distancia, palpite))
         print('Distâncias: \n {}'.format(lista_distancia))
-        
+
