@@ -3,7 +3,7 @@ from msilib.schema import _Validation_records
 import random
 from math import *
 from dadosnormalizados import DADOS
-import funções 
+import funcoes 
 
 #dados e listas necessários
 lista_de_paises =[]
@@ -85,13 +85,16 @@ while chances > 0:
                             if lat_long == 'longitude':
                                 y1 = valores_lat_long
             if pais == palpite:
-                for item2, especificidades2 in pais.items():
-                    if item2 == 'latitude':
-                        x2 = especificidades2 
-                    if item2 == 'longitude':
-                        y2 = especificidades2 
-        distancia = funções.haversine(raioterra, x1, y1, x2, y2)
-        lista_distancia.append('{} km -> {}'.format(distancia, palpite)) #tem que por em ordem da menor distancia para maior
+                for informacoes2, valores2 in dados.items():
+                    if informacoes2 == 'geo':
+                        for lat_long2, valores_lat_long2 in valores2.items():
+                            if lat_long2 == 'latitude':
+                                x2 = valores_lat_long2
+                            if lat_long2 == 'longitude':
+                                y2 = valores_lat_long2
+        distancia = funcoes.haversine(raioterra, x1, y1, x2, y2)
+        lista_distancia = funcoes.adiciona_em_ordem(palpite, distancia, lista_distancia)
+        lista_distancia.append('{} km -> {}'.format(distancia, palpite))
         print('Distâncias: \n {}'.format(lista_distancia))
 
 {'afeganistao': 
