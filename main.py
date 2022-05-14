@@ -4,7 +4,16 @@ from math import *
 from dadosnormalizados import DADOS
 import funções 
 
+#dados e listas necessários
+lista_de_paises =[]
+lista_distancia = []
+lista_dicas = []
+for pais in DADOS.keys():
+    lista_de_paises.append(pais)
 
+resposta_certa = random.choice(lista_de_paises)
+raioterra = 6371
+contador_tentativas = 0
 chances = 20
 
 #página inicial
@@ -20,14 +29,7 @@ print('Você tem {} tentativa(s)'.format(chances))
 #inicializando palpite e selecionando aleatoriamente um pais
 palpite = input('Qual seu palpite? ')
 
-lista_de_paises =[]
-for pais in DADOS.keys():
-    lista_de_paises.append(pais)
-resposta_certa = random.choice(lista_de_paises)
-raioterra = 6371
-lista_distancia = []
-lista_dicas = []
-contador_tentativas = 0
+
 
 while chances > 0:
     if palpite == 'desisto':
