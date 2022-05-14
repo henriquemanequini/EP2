@@ -29,8 +29,6 @@ print('Você tem {} tentativa(s)'.format(chances))
 #inicializando palpite e selecionando aleatoriamente um pais
 palpite = input('Qual seu palpite? ')
 
-
-
 while chances > 0:
     if palpite == 'desisto':
         desistencia = input('Tem certeza que deseja desistir da rodada? [s|n]')
@@ -77,7 +75,7 @@ while chances > 0:
     else: 
         #latitude e longitude
         for pais, dados in DADOS.items():
-            if pais == resposta_certa:
+            if pais == palpite:
                 for item, especificidades in pais.items():
                     if item == 'latitude':
                         x1 = especificidades
@@ -93,3 +91,8 @@ while chances > 0:
         lista_distancia.append('{} km -> {}'.format(distancia, palpite)) #tem que por em ordem da menor distancia para maior
         print('Distâncias: \n {}'.format(lista_distancia))
 
+{'afeganistao': 
+{'area': 652230, 'populacao': 31390200, 'capital': 'Cabul', 'geo': 
+{'latitude': 33.93911, 'longitude': 67.709953}, 
+'bandeira': {'vermelha': 28, 'laranja': 1, 'amarela': 0, 'verde': 33, 'azul': 0, 'azul claro': 0, 'preta': 33, 'branca': 3, 'outras': 5},
+ 'continente': 'asia'}}
