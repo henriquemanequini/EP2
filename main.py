@@ -1,4 +1,5 @@
 #importando bibliotecas necessárias
+from msilib.schema import _Validation_records
 import random
 from math import *
 from dadosnormalizados import DADOS
@@ -75,12 +76,14 @@ while chances > 0:
     else: 
         #latitude e longitude
         for pais, dados in DADOS.items():
-            if pais == palpite:
-                for item, especificidades in pais.items():
-                    if item == 'latitude':
-                        x1 = especificidades
-                    if item == 'longitude':
-                        y1 = especificidades 
+            if pais == resposta_certa:
+                for informacoes, valores in dados.items():
+                    if informacoes == 'geo':
+                        for lat_long, valores_lat_long in valores.items():
+                            if lat_long == 'latitude':
+                                x1 = valores_lat_long
+                            if lat_long == 'longitude':
+                                y1 = valores_lat_long
             if pais == palpite:
                 for item2, especificidades2 in pais.items():
                     if item2 == 'latitude':
@@ -96,4 +99,4 @@ while chances > 0:
 {'latitude': 33.93911, 'longitude': 67.709953}, 
 'bandeira': {'vermelha': 28, 'laranja': 1, 'amarela': 0, 'verde': 33, 'azul': 0, 'azul claro': 0, 'preta': 33, 'branca': 3, 'outras': 5},
  'continente': 'asia'}}
- 
+
