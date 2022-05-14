@@ -27,7 +27,7 @@ print('Comandos:\n' '   dica       - entra no mercado de dicas\n' '   desisto   
 print('Um país foi escolhido, tente adivinhar!') 
 print('Você tem {} tentativa(s)'.format(chances))
 
-#inicializando palpite e selecionando aleatoriamente um pais
+#inicializando palpite
 palpite = input('Qual seu palpite? ')
 
 while chances > 0:
@@ -55,15 +55,30 @@ while chances > 0:
             opcao_dica = input('Escolha sua opção [0|1|2|3|4]: ')
         if opcao_dica == '1':
             chances -= 3
+            
         elif opcao_dica == '2':
             chances -= 2
         elif opcao_dica == '3':
             chances -= 5
         elif opcao_dica == '4':
             chances -= 4
+        elif opcao_dica == '5':
+            chances -= 6
+            # acessando o continente
+            # nao esta funcionando por algum motivo
+            for nome_pais, caracteristicas in DADOS.items():
+                if nome_pais == palpite:
+                    for a, b in nome_pais.items():
+                        if a == 'continente':
+                            lista_dicas.append('-Continente: {}'.format(b))
         elif opcao_dica == '0':
-            print('Dica: ')
+            print('Distâncias: \n {}'.format(lista_distancia))
+            print('Dicas: \n {}'.format(lista_dicas))
             palpite = input('Qual seu palpite? ')
+
+        print('Distâncias: \n {}'.format(lista_distancia))
+        print('Dicas: \n {}'.format(lista_dicas))
+        palpite = input('Qual seu palpite? ')
 
     elif palpite not in DADOS.keys():
         print('país desconhecido')
@@ -74,7 +89,6 @@ while chances > 0:
         chances = 0 #isso faz com que saia do while e termine o código
 
     else: 
-        #latitude e longitude
         for pais, dados in DADOS.items():
             if pais == resposta_certa:
                 for informacoes, valores in dados.items():
@@ -94,8 +108,30 @@ while chances > 0:
                                 y2 = valores_lat_long2
         distancia = funcoes.haversine(raioterra, x1, y1, x2, y2)
         lista_distancia = funcoes.adiciona_em_ordem(palpite, distancia, lista_distancia)
-        lista_distancia.append('{} km -> {}'.format(distancia, palpite))
+
         print('Distâncias: \n {}'.format(lista_distancia))
+        print('Dicas: ')
+
+    chances -= 1
+
+    # ao final do jogo, pergunta se o usuário deseja jogar novamente
+    # ta perguntando depois de cada palpite novo
+    # tem algum jeito de deixar isso fora do while e caso ele queira jogar dnv retornar ao while?
+    rodada_nova = input('Jogar novamente? [s|n]')
+    if rodada_nova == 's':
+        chances = 20
+        resposta_certa = random.choice(lista_de_paises)
+        print('Um país foi escolhido, tente adivinhar!') 
+        print('Você tem {} tentativa(s)'.format(chances))
+        palpite = input('Qual seu palpite? ')
+
+    else:
+        break
+print('Até a próxima!')
+
+
+
+
 
 {'afeganistao': 
 {'area': 652230, 'populacao': 31390200, 'capital': 'Cabul', 'geo': 
