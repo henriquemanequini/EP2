@@ -16,12 +16,13 @@ def haversine(r, x1, y1, x2, y2):
 def adiciona_em_ordem(pais, distancia, lista):
     i = 0
     if lista == []:
-        return [[pais, distancia]]
-    for lista_paises in lista:
-        if lista_paises[0] == pais:
+        lista.append(['{} km -> {}'.format(pais, distancia)])
+        return lista
+    for paises in lista:
+        if paises[0] == pais:
             return lista
-        if lista_paises[1] > distancia:
-            lista.insert(i, [pais, distancia])
+        if paises[1] > distancia:
+            lista.insert(i, ['{} km -> {}'.format(pais, distancia)])
             break
         i += 1
     return lista
