@@ -43,7 +43,7 @@ def adiciona_em_ordem(pais,distancia,lista_pais_distancia):
   
 
 def adiciona_em_ordem2(pais,distancia,lista_pais_distancia):
-    novo = ['{} km -> {}'.format(pais, distancia)]
+    novo = ['{} km -> {}'.format(distancia, pais)]
     i = 0
     if lista_pais_distancia == []:
         lista_pais_distancia.append(novo)    
