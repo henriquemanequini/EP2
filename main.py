@@ -52,25 +52,41 @@ while chances > 0:
         respostas_dica = ['0','1','2','3','4','5']
         while opcao_dica not in respostas_dica:
             print ('Opção inválida')
-            opcao_dica = input('Escolha sua opção [0|1|2|3|4]: ')
+            opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
+        
         if opcao_dica == '1':
             chances -= 3
             
         elif opcao_dica == '2':
             chances -= 2
+        
         elif opcao_dica == '3':
             chances -= 5
+            # acessando a area
+            for pais2, caracteristicas2 in DADOS.items():
+                if pais2 == palpite:
+                    for c, d in caracteristicas2.items():
+                        if c == 'area':
+                            lista_dicas.append('-Área: {}'.format(d))
+        
         elif opcao_dica == '4':
             chances -= 4
+            # acessando a populacao
+            for pais3, caracteristicas3 in DADOS.items():
+                if pais3 == palpite:
+                    for e, f in caracteristicas3.items():
+                        if e == 'area':
+                            lista_dicas.append('-População: {}'.format(f))
+
         elif opcao_dica == '5':
             chances -= 6
             # acessando o continente
-            # nao esta funcionando por algum motivo
             for nome_pais, caracteristicas in DADOS.items():
                 if nome_pais == palpite:
-                    for a, b in nome_pais.items():
+                    for a, b in caracteristicas.items():
                         if a == 'continente':
                             lista_dicas.append('-Continente: {}'.format(b))
+        
         elif opcao_dica == '0':
             print('Distâncias: \n {}'.format(lista_distancia))
             print('Dicas: \n {}'.format(lista_dicas))
@@ -113,7 +129,7 @@ while chances > 0:
         print('Dicas: ')
 
     chances -= 1
-
+    contador_tentativas += 1
     # ao final do jogo, pergunta se o usuário deseja jogar novamente
     # ta perguntando depois de cada palpite novo
     # tem algum jeito de deixar isso fora do while e caso ele queira jogar dnv retornar ao while?
