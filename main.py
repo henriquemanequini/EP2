@@ -31,35 +31,65 @@ print('Você tem {} tentativa(s)'.format(chances))
 palpite = input('Qual seu palpite? ')
 
 while chances > 0:
+    # CASO DESISTO
     if palpite == 'desisto':
         desistencia = input('Tem certeza que deseja desistir da rodada? [s|n]')
         if desistencia == 's':
             print('>>> Que deselegante desistir, o país era:{}'.format(resposta_certa))
+            rodada_nova = input('Jogar novamente? [s|n]')
+            if rodada_nova == 's':
+                chances = 20
+                resposta_certa = random.choice(lista_de_paises)
+                print('Um país foi escolhido, tente adivinhar!') 
+                print('Você tem {} tentativa(s)'.format(chances))
+                palpite = input('Qual seu palpite? ')
+            else:
+                break
         else:
             palpite = input('Qual seu palpite? ')
 
+    # CASO DICAS
     elif palpite == 'dica':
-        print('Mercado de Dicas')
-        print('----------------------------------------')
-        print('1. Cor da bandeira  - custa 4 tentativas')
-        print('2. Letra da capital - custa 3 tentativas')
-        print('3. Área             - custa 6 tentativas')
-        print('4. População        - custa 5 tentativas')
-        print('5. Continente       - custa 7 tentativas')
-        print('0. Sem dica')
-        print('----------------------------------------')
-        opcao_dica = input('Escolha sua opção [0|1|2|3|4]: ')
-        respostas_dica = ['0','1','2','3','4','5']
-        while opcao_dica not in respostas_dica:
-            print ('Opção inválida')
+        # a cada rodada de dica, as opcoes do jogador diminuem
+        # CASO 1: primeira vez pedindo dicas
+        if lista_dicas == []:
+            print('Mercado de Dicas')
+            print('----------------------------------------')
+            print('1. Cor da bandeira  - custa 4 tentativas')
+            print('2. Letra da capital - custa 3 tentativas')
+            print('3. Área             - custa 6 tentativas')
+            print('4. População        - custa 5 tentativas')
+            print('5. Continente       - custa 7 tentativas')
+            print('0. Sem dica')
+            print('----------------------------------------')
             opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
-        
+            respostas_dica = ['0','1','2','3','4','5']
+            while opcao_dica not in respostas_dica:
+                print ('Opção inválida')
+                opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
+
+        # CASO 2: o jogador ja pediu a dica de área, somente ela
+        elif 'Área' in lista_dicas and 'População'  not in lista_dicas and 'Continente' not in lista_dicas:
+            print('Mercado de Dicas')
+            print('----------------------------------------')
+            print('1. Cor da bandeira  - custa 4 tentativas')
+            print('2. Letra da capital - custa 3 tentativas')
+            print('4. População        - custa 5 tentativas')
+            print('5. Continente       - custa 7 tentativas')
+            print('0. Sem dica')
+            print('----------------------------------------')
+            opcao_dica = input('Escolha sua opção [0|1|2|4|5]: ')
+            del(respostas_dica[3])
+            while opcao_dica not in respostas_dica:
+                print ('Opção inválida')
+                opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
+            
         if opcao_dica == '1':
             chances -= 3
-            
+                
         elif opcao_dica == '2':
             chances -= 2
-        
+            
         elif opcao_dica == '3':
             chances -= 5
             # acessando a area
@@ -68,7 +98,7 @@ while chances > 0:
                     for c, d in caracteristicas2.items():
                         if c == 'area':
                             lista_dicas.append('-Área: {}'.format(d))
-        
+            
         elif opcao_dica == '4':
             chances -= 4
             # acessando a populacao
@@ -86,7 +116,7 @@ while chances > 0:
                     for a, b in caracteristicas.items():
                         if a == 'continente':
                             lista_dicas.append('-Continente: {}'.format(b))
-        
+            
         elif opcao_dica == '0':
             print('Distâncias: \n {}'.format(lista_distancia))
             print('Dicas: \n {}'.format(lista_dicas))
@@ -96,14 +126,17 @@ while chances > 0:
         print('Dicas: \n {}'.format(lista_dicas))
         palpite = input('Qual seu palpite? ')
 
+    # CASO PAÍS NÃO EXISTE
     elif palpite not in DADOS.keys():
         print('país desconhecido')
         palpite = input('Qual seu palpite? ')
 
+    # CASO ACERTOU O PAÍS
     elif palpite == resposta_certa:
         print('*** Parabéns! Você acertou após {} tentativas!'. format(contador_tentativas))
         chances = 0 #isso faz com que saia do while e termine o código
 
+    # CASO CHUTE NOME DE UM PAÍS
     else: 
         for pais, dados in DADOS.items():
             if pais == resposta_certa:
@@ -128,21 +161,10 @@ while chances > 0:
         print('Distâncias: \n {}'.format(lista_distancia))
         print('Dicas: ')
 
+    # atualizando chances e tentativas ao final de cada rodada
     chances -= 1
     contador_tentativas += 1
-    # ao final do jogo, pergunta se o usuário deseja jogar novamente
-    # ta perguntando depois de cada palpite novo
-    # tem algum jeito de deixar isso fora do while e caso ele queira jogar dnv retornar ao while?
-    rodada_nova = input('Jogar novamente? [s|n]')
-    if rodada_nova == 's':
-        chances = 20
-        resposta_certa = random.choice(lista_de_paises)
-        print('Um país foi escolhido, tente adivinhar!') 
-        print('Você tem {} tentativa(s)'.format(chances))
-        palpite = input('Qual seu palpite? ')
 
-    else:
-        break
 print('Até a próxima!')
 
 
