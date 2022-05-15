@@ -162,12 +162,12 @@ while chances > 0:
                             if lat_long == 'longitude':
                                 y1 = valores_lat_long
             if pais == palpite:
-                for item2, especificidades2 in pais.items():
+                for item2, especificidades2 in pais.items(): 
                     if item2 == 'latitude':
                         x2 = especificidades2 
                     if item2 == 'longitude':
                         y2 = especificidades2 
-        distancia = funções.haversine(raioterra, x1, y1, x2, y2)
+        distancia = funções.haversine(raioterra, , y1, x2, y2)
         lista_distancia.append('{} km -> {}'.format(distancia, palpite)) #tem que por em ordem da menor distancia para maior
         print('Distâncias: \n {}'.format(lista_distancia))
     
