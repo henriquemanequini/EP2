@@ -44,5 +44,5 @@ while chances > 0:
             chances = 0 #isso faz com que saia do while e termine o código
 
     elif palpite in DADOS.keys() and palpite != resposta_certa:
-        distancia = int(haversine(raioterra, lista_de_paises[resposta_certa]['geo']['latitude'], lista_de_paises[resposta_certa]['geo']['longitude'], lista_de_paises))
+        distancia = int(haversine(raioterra, DADOS[resposta_certa]['geo']['latitude'], DADOS[resposta_certa]['geo']['longitude'], DADOS[palpite]['geo']['latitude'], DADOS[palpite]['geo']['longitude']))
         lista_distancia = adiciona_em_ordem(palpite, distancia, lista_distancia)
