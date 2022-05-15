@@ -54,11 +54,28 @@ while chances > 0:
             print('5. Continente       - custa 7 tentativas')
             print('0. Sem dica')
             print('----------------------------------------')
-        opcao_dica = input('Escolha sua opção [0|1|2|3|4]: ')
-        respostas_dica = ['0','1','2','3','4','5']
-        while opcao_dica not in respostas_dica:
-            print ('Opção inválida')
-            opcao_dica = input('Escolha sua opção [0|1|2|3|4]: ')
+            opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
+            respostas_dica = ['0','1','2','3','4','5']
+            while opcao_dica not in respostas_dica:
+                print ('Opção inválida')
+                opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
+
+        # CASO 2: o jogador ja pediu a dica de área, somente ela
+        elif 'Área' in lista_dicas and 'População'  not in lista_dicas and 'Continente' not in lista_dicas:
+            print('Mercado de Dicas')
+            print('----------------------------------------')
+            print('1. Cor da bandeira  - custa 4 tentativas')
+            print('2. Letra da capital - custa 3 tentativas')
+            print('4. População        - custa 5 tentativas')
+            print('5. Continente       - custa 7 tentativas')
+            print('0. Sem dica')
+            print('----------------------------------------')
+            opcao_dica = input('Escolha sua opção [0|1|2|4|5]: ')
+            del(respostas_dica[3])
+            while opcao_dica not in respostas_dica:
+                print ('Opção inválida')
+                opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
+            
         if opcao_dica == '1':
             if chances<=3:
                 print('Mercado de Dicas')
