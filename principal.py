@@ -137,4 +137,3 @@ while chances > 0:
 
         if mostrador_dicas != []:
             if cor in mostrador_dicas:
-                man
