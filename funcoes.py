@@ -26,6 +26,21 @@ def adiciona_em_ordem(pais, distancia, lista):
             break
         i += 1
     return lista
+def adiciona_em_ordem(pais,distancia,lista_pais_distancia):
+    novo = [pais,distancia]
+    i = 0
+    if lista_pais_distancia == []:
+        lista_pais_distancia.append(novo)    
+    if novo not in lista_pais_distancia:
+        for paises_distancias in lista_pais_distancia:
+            if paises_distancias[1]>distancia:
+                lista_pais_distancia.insert(i,novo)
+                break
+            i+=1
+        if distancia > lista_pais_distancia[-1][1]:
+            lista_pais_distancia.insert(i,novo)
+    return lista_pais_distancia
+  
 
 def adiciona_em_ordem2(pais,distancia,lista_pais_distancia):
     novo = ['{} km -> {}'.format(pais, distancia)]
