@@ -54,28 +54,12 @@ while chances > 0:
             print('5. Continente       - custa 7 tentativas')
             print('0. Sem dica')
             print('----------------------------------------')
-            opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
-            respostas_dica = ['0','1','2','3','4','5']
-            while opcao_dica not in respostas_dica:
-                print ('Opção inválida')
-                opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
-
-        # CASO 2: o jogador ja pediu a dica de área, somente ela
-        elif 'Área' in lista_dicas and 'População'  not in lista_dicas and 'Continente' not in lista_dicas:
-            print('Mercado de Dicas')
-            print('----------------------------------------')
-            print('1. Cor da bandeira  - custa 4 tentativas')
-            print('2. Letra da capital - custa 3 tentativas')
-            print('4. População        - custa 5 tentativas')
-            print('5. Continente       - custa 7 tentativas')
-            print('0. Sem dica')
-            print('----------------------------------------')
-            opcao_dica = input('Escolha sua opção [0|1|2|4|5]: ')
-            del(respostas_dica[3])
-            while opcao_dica not in respostas_dica:
-                print ('Opção inválida')
-                opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
-            
+        opcao_dica = input('Escolha sua opção [0|1|2|3|4]: ')
+        respostas_dica = ['0','1','2','3','4','5']
+        
+        while opcao_dica not in respostas_dica:
+            print ('Opção inválida')
+            opcao_dica = input('Escolha sua opção [0|1|2|3|4]: ')
         if opcao_dica == '1':
             if chances<=3:
                 print('Mercado de Dicas')
@@ -162,12 +146,12 @@ while chances > 0:
                             if lat_long == 'longitude':
                                 y1 = valores_lat_long
             if pais == palpite:
-                for item2, especificidades2 in pais.items(): 
+                for item2, especificidades2 in pais.items():
                     if item2 == 'latitude':
                         x2 = especificidades2 
                     if item2 == 'longitude':
                         y2 = especificidades2 
-        distancia = funções.haversine(raioterra, , y1, x2, y2)
+        distancia = funções.haversine(raioterra, x1, y1, x2, y2)
         lista_distancia.append('{} km -> {}'.format(distancia, palpite)) #tem que por em ordem da menor distancia para maior
         print('Distâncias: \n {}'.format(lista_distancia))
     
@@ -176,4 +160,5 @@ while chances > 0:
 {'latitude': 33.93911, 'longitude': 67.709953}, 
 'bandeira': {'vermelha': 28, 'laranja': 1, 'amarela': 0, 'verde': 33, 'azul': 0, 'azul claro': 0, 'preta': 33, 'branca': 3, 'outras': 5},
  'continente': 'asia'}}
+ 
 
