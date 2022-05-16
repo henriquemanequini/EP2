@@ -8,10 +8,12 @@ lista_de_paises =[]
 lista_distancia = []
 lista_dicas = []
 mostrador_dicas = []
-lista_letras_capital = []
+letra_escolhida = []
 dicionario_cores = {'- Cores da bandeira': []}
 dicionario_capital = {}
 mercado = 'Mercado de Dicas \n ---------------------------------------- \n 1. Cor da bandeira  - custa 4 tentativas \n 2. Letra da capital - custa 3 tentativas \n 3. Área             - custa 6 tentativas \n 4. População        - custa 5 tentativas \n 5. Continente       - custa 7 tentativas \n 0. Sem dica \n ----------------------------------------'
+letras_capital = []
+
 
 for pais in DADOS.keys():
     lista_de_paises.append(pais)
@@ -53,8 +55,6 @@ while chances > 0:
         lista_distancia = adiciona_em_ordem2(palpite, distancia, lista_distancia)
     
     elif palpite == 'dica':
-        # a cada rodada de dica, as opcoes do jogador diminuem
-        # CASO 1: primeira vez pedindo dicas
         if mostrador_dicas == []:
             print(mercado)
             opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
@@ -65,7 +65,7 @@ while chances > 0:
                 opcao_dica = input('Escolha sua opção [0|1|2|3|4|5]: ')
 
             if opcao_dica == '1':
-                if chances < 4:
+                if chances < 5:
                     print('Mercado de Dicas')
                     print('----------------------------------------')
                     print ('0. Sem dica')
@@ -82,50 +82,90 @@ while chances > 0:
                                     for cor, porcentagem in valores.items():
                                         if porcentagem > 0 and cor not in mostrador_dicas:
                                             dicionario_cores['- Cores da bandeira'].append(cor)
+                                            print('Dicas:')
                                             print(' - Cores da bandeira:{0}'.format(cor))
                                             lista_dicas.append(dicionario_cores)
                                             mostrador_dicas.append(cor)
                                             
                                             break
             elif opcao_dica == '2':
-                chances -= 2
-                for pais, dados in DADOS.items():
-                    if pais == resposta_certa:
-                        for informacoes, valores in dados.items():
-                            if informacoes == 'capital':
-                                for letras in valores:
-                                    lista_letras_capital.append(letras)
-                                letra_escolhida = random.choice(lista_letras_capital)
-                                print('- Letras da capital: {0}'.format(letra_escolhida))
-                                lista_dicas.append('- Letras da capital: {0}'.format(letra_escolhida))
+                if chances < 4:
+                    print('Mercado de Dicas')
+                    print('----------------------------------------')
+                    print ('0. Sem dica')
+                    print('----------------------------------------')
+                    print('>>> Infelizmente, acabou seu estoque')
+                    palpite = input('Qual seu palpite? ')
+                else:
+                    chances -= 2
+                    for pais, dados in DADOS.items():
+                        if pais == resposta_certa:
+                            for informacoes, valores in dados.items():
+                                if informacoes == 'capital':
+                                    sorteada = sorteia_letra(dados['capital'],letra_escolhida)
+                                    letra_escolhida.append(sorteada)
+                                    print('Dicas:')
+                                    print('- Letras da capital: {0}'.format(letra_escolhida))
+                                    lista_dicas.append('- Letras da capital: {0}'.format(letra_escolhida))
             elif opcao_dica == '3':
-                chances -= 5
-                # acessando a area
-                for pais2, caracteristicas2 in DADOS.items():
-                    if pais2 == palpite:
-                        for c, d in caracteristicas2.items():
-                            if c == 'area':
-                                lista_dicas.append('-Área: {}'.format(d))
+                if chances < 7:
+                    print('Mercado de Dicas')
+                    print('----------------------------------------')
+                    print ('0. Sem dica')
+                    print('----------------------------------------')
+                    print('>>> Infelizmente, acabou seu estoque')
+                    palpite = input('Qual seu palpite? ')
+                else:
+                    mercado.replace('3. Área             - custa 6 tentativas \n', '')
+                    chances -= 5
+                    # acessando a area
+                    for pais2, caracteristicas2 in DADOS.items():
+                        if pais2 == palpite:
+                            for c, d in caracteristicas2.items():
+                                if c == 'area':
+                                    print('Dicas:')
+                                    print('-Área: {}'.format(d))
+                                    lista_dicas.append('-Área: {}'.format(d))
                 
             elif opcao_dica == '4':
-                chances -= 4
-                # acessando a populacao
-                for pais3, caracteristicas3 in DADOS.items():
-                    if pais3 == palpite:
-                        for e, f in caracteristicas3.items():
-                            if e == 'area':
-                                print('-População: {}'.format(f))
-                                lista_dicas.append('-População: {}'.format(f))
+                if chances < 6:
+                    print('Mercado de Dicas')
+                    print('----------------------------------------')
+                    print ('0. Sem dica')
+                    print('----------------------------------------')
+                    print('>>> Infelizmente, acabou seu estoque')
+                    palpite = input('Qual seu palpite? ')
+                else:
+                    mercado.replace('4. População        - custa 5 tentativas \n', '')
+                    chances -= 4
+                    # acessando a populacao
+                    for pais3, caracteristicas3 in DADOS.items():
+                        if pais3 == palpite:
+                            for e, f in caracteristicas3.items():
+                                if e == 'area':
+                                    print('Dicas:')
+                                    print('-População: {}'.format(f))
+                                    lista_dicas.append('-População: {}'.format(f))
 
             elif opcao_dica == '5':
-                chances -= 6
-                # acessando o continente
-                for nome_pais, caracteristicas in DADOS.items():
-                    if nome_pais == palpite:
-                        for a, b in caracteristicas.items():
-                            if a == 'continente':
-                                lista_dicas.append('-Continente: {}'.format(b))
-                                print('-Continente: {}'.format(b))
+                if chances < 8:
+                    print('Mercado de Dicas')
+                    print('----------------------------------------')
+                    print ('0. Sem dica')
+                    print('----------------------------------------')
+                    print('>>> Infelizmente, acabou seu estoque')
+                    palpite = input('Qual seu palpite? ')
+                else: 
+                    mercado.replace('5. Continente       - custa 7 tentativas \n', '')
+                    chances -= 6
+                    # acessando o continente
+                    for nome_pais, caracteristicas in DADOS.items():
+                        if nome_pais == palpite:
+                            for a, b in caracteristicas.items():
+                                if a == 'continente':
+                                    lista_dicas.append('-Continente: {}'.format(b))
+                                    print('Dicas:')
+                                    print('-Continente: {}'.format(b))
                 
             elif opcao_dica == '0':
                 print('Dica: ')
@@ -135,5 +175,6 @@ while chances > 0:
             print('Dicas: \n {}'.format(lista_dicas))
             palpite = input('Qual seu palpite? ')
 
-        if mostrador_dicas != []:
-            if cor in mostrador_dicas:
+        elif mostrador_dicas != []:
+            
+            
